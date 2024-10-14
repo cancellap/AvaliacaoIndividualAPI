@@ -1,0 +1,13 @@
+package com.serratec.domain;
+
+import java.time.LocalDate;
+
+import jakarta.persistence.Entity;
+
+@Entity
+public class Publicacao {
+
+	private String autor;
+
+	private LocalDate dataPublicacao;
+}

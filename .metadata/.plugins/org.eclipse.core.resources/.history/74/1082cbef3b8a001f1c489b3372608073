@@ -1,0 +1,12 @@
+package com.serratec.domain;
+
+import jakarta.persistence.Column;
+
+public class Autor {
+
+	@Column
+	private String nome;
+	
+	@Column
+	private String nacionalidade;
+}

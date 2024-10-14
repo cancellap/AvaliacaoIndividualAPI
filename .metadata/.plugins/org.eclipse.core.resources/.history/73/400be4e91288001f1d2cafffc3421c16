@@ -1,0 +1,43 @@
+package com.serratec.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.serratec.domain.Publicacao;
+import com.serratec.repository.PublicacaoRepository;
+
+@RestController
+@RequestMapping("/publicacao")
+public class PublicacaoController {
+
+	@Autowired
+	private PublicacaoRepository pr;
+	
+	@GetMapping
+	public ResponseEntity<List<Publicacao>> listar(){
+		return ResponseEntity.ok(pr.findAll());
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Publicacao> buscar(@PathVariable Long id){
+		Optional<Publicacao> publiOpt = pr.findById(id);
+		if (!publiOpt.isPresent()) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(publiOpt.get());
+	}
+	
+	@PostMapping
+	public ResponseEntity<Publicacao> inserir	(@RequestBody Publicao publicacao){
+		
+	}
+}
